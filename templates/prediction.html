@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            background-image: url(r'static\image\car_image.jpg');
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #prediction-result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Price Prediction</h1>
+    <div id="prediction-result">
+        {% if prediction %}
+            <p>Predicted Price: {{ prediction }}</p>
+        {% else %}
+            <p>No prediction available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            background-image: url(r'static/image/car_image.jpg');
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: auto;
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5); /* Drop shadow effect */
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100px;
+        }
+        #prediction-result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Price Prediction</h1>
+
+    <form id="prediction-form" action="/predict" method="post">
+        <!-- Input fields for car features -->
+        <label for="normalizedlosses">Normalized Losses:</label>
+        <input type="number" name="normalizedlosses" min="65" max="256"><br><br>
+
+        <label for="wheelbase">Wheelbase:</label>
+        <input type="number" name="wheelbase" min="86.6" max="120.9" ><br><br>
+
+        <label for="width">Width:</label>
+        <input type="number" name="width" min="60.3" max="72.3" step="0.1"><br><br>
+
+        <label for="curbweight">Curb Weight:</label>
+        <input type="number" name="curbweight" min="1488" max="4066"><br><br>
+
+        <label for="enginesize">Engine Size:</label>
+        <input type="number" name="enginesize" min="61" max="326"><br><br>
+
+        <label for="horsepower">Horsepower:</label>
+        <input type="number" name="horsepower" min="48" max="288"><br><br>
+
+        <label for="citympg">City MPG:</label>
+        <input type="number" name="citympg" min="13" max="49"><br><br>
+
+        <label for="highwaympg">Highway MPG:</label>
+        <input type="number" name="highwaympg" min="16" max="54"><br><br>
+
+        <!-- Button to trigger prediction -->
+        <button type="submit">Predict</button>
+    </form>
+    <!-- Container for displaying prediction result -->
+    <div id="prediction-result"></div>
+
+    <script>
+        // JavaScript to handle form submission and display prediction result
+       
+    
+
+        var formData = new FormData(document.getElementById('prediction-form'));
+
+            fetch('/api/predict', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json()).then(data => {
+                document.getElementById('prediction-result').innerText = 'Predicted Charges: ' + data.prediction;
+            });
+    </script>
+</body>
+</html>
