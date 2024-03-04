@@ -25,7 +25,7 @@ def predict():
     # Call your utility function to predict car price
     predicted_price = car_price_prediction(normalizedlosses, wheelbase, width, curbweight, enginesize, horsepower, citympg, highwaympg)
     print(predicted_price)
-    return render_template('prediction.html', prediction=predicted_price)
+    return render_template('prediction.html', prediction=predicted_price[0])
 
 if __name__ == '__main__':
     app.run(debug=False)
