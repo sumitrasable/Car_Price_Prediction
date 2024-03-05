@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from utils import car_price_prediction
+import config
 
 app = Flask(__name__)
 
@@ -28,4 +29,4 @@ def predict():
     return render_template('prediction.html', prediction=predicted_price[0])
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host= "0.0.0.0" ,  port = config.PORT_NUMBER, debug=False)

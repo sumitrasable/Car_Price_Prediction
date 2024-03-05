@@ -1,8 +1,9 @@
 import pickle
 import numpy as np
+import config
 
 def car_price_prediction(normalizedlosses, wheelbase, width, curbweight, enginesize, horsepower, citympg ,highwaympg ):
-    with open(r'artifacts\random_forest_reg_model.pkl', 'rb') as f:
+    with open(config.model_file_path, 'rb') as f:
         model = pickle.load(f)
 
    # test_array = np.zeros((model.n_features_in_))
